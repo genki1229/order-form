@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>高原ナーシングホーム様 発注フォーム</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4CAF50; /* メインカラー（緑系） */
+            --primary-hover-color: #45a049;
+            --secondary-color: #007bff; /* サブカラー */
+            --text-color: #333;
+            --light-gray: #f2f2f2;
+            --border-color: #ddd;
+            --shadow-color: rgba(0,0,0,0.08);
+        }
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: var(--light-gray);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px var(--shadow-color);
+            max-width: 800px;
+            margin: 30px auto;
+        }
+        h1 {
+            text-align: center;
+            color: var(--primary-color);
+            font-size: 2.2em;
+            margin-bottom: 25px;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 15px;
+        }
+        p {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+            color: #666;
+        }
+        .form-section-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin-top: 30px;
+            margin-bottom: 20px;
+            border-left: 5px solid var(--secondary-color);
+            padding-left: 10px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 700;
+            color: var(--text-color);
+            font-size: 1em;
+        }
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            box-sizing: border-box;
+            font-size: 1em;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        input[type="text"]:focus, input[type="number"]:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+            outline: none;
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* 応答性を改善 */
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .product-grid .form-group {
+            background-color: var(--light-gray);
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+        button {
+            width: 100%;
+            padding: 15px 25px;
+            font-size: 1.2em;
+            cursor: pointer;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            margin-top: 30px;
+            transition: background-color 0.3s ease, transform 0.1s ease;
+        }
+        button:hover:enabled {
+            background-color: var(--primary-hover-color);
+            transform: translateY(-2px);
+        }
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+        #message {
+            text-align: center;
+            margin-top: 25px;
+            font-weight: bold;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 1.1em;
+        }
+        #message.success {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+        }
+        #message.error {
+            background-color: #ffebee;
+            color: #c62828;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>商品発注フォーム</h1>
+        <p>ご希望の商品の数量を入力してください。（0のままでも構いません）</p>
+
+        <form id="orderForm">
+            <div class="form-section-title">お客様情報</div>
+            <div class="form-group">
+                <label for="customerName">施設名・病院名:</label>
+                <input type="text" id="customerName" value="高原ナーシングホーム" required>
+            </div>
+
+            <div class="form-section-title">発注内容</div>
+            <div class="product-grid">
+                <div class="form-group"><label for="p01">カミ商事 いちばんフラットタイプ</label><input type="number" id="p01" min="0" value="0" required></div>
+                <div class="form-group"><label for="p02">白十字 サルバ 紙パンツ用やわ楽パッド 2回吸収</label><input type="number" id="p02" min="0" value="0" required></div>
+                <div class="form-group"><label for="p03">白十字 サルバ オーバーナイト男性用</label><input type="number" id="p03" min="0" value="0" required></div>
+                <div class="form-group"><label for="p04">白十字 サルバ フレーヌケア デイロング</label><input type="number" id="p04" min="0" value="0" required></div>
+                <div class="form-group"><label for="p05">白十字 サルバ フレーヌケア ストロング</label><input type="number" id="p05" min="0" value="0" required></div>
+                <div class="form-group"><label for="p06">白十字 サルバ やわ楽パンツ S</label><input type="number" id="p06" min="0" value="0" required></div>
+                <div class="form-group"><label for="p07">白十字 サルバ やわ楽パンツ M</label><input type="number" id="p07" min="0" value="0" required></div>
+                <div class="form-group"><label for="p08">白十字 サルバ やわ楽パンツ L</label><input type="number" id="p08" min="0" value="0" required></div>
+                <div class="form-group"><label for="p09">白十字 サルバ やわ楽パンツ LL</label><input type="number" id="p09" min="0" value="0" required></div>
+                <div class="form-group"><label for="p10">白十字 サルバ やわ楽パンツしっかり長時間 M-L</label><input type="number" id="p10" min="0" value="0" required></div>
+                <div class="form-group"><label for="p11">白十字 サルバ やわ楽パンツしっかり長時間 L-LL</label><input type="number" id="p11" min="0" value="0" required></div>
+                <div class="form-group"><label for="p12">白十字 応援介護テープ止め あて楽 S-M</label><input type="number" id="p12" min="0" value="0" required></div>
+                <div class="form-group"><label for="p13">白十字 応援介護テープ止め あて楽 M</label><input type="number" id="p13" min="0" value="0" required></div>
+                <div class="form-group"><label for="p14">白十字 応援介護テープ止め あて楽 M-L</label><input type="number" id="p14" min="0" value="0" required></div>
+                <div class="form-group"><label for="p15">白十字 応援介護テープ止め あて楽 L</label><input type="number" id="p15" min="0" value="0" required></div>
+                <div class="form-group"><label for="p16">白十字 サルバ 安心Wフィット 高吸収テープ S-M</label><input type="number" id="p16" min="0" value="0" required></div>
+                <div class="form-group"><label for="p17">白十字 サルバ 安心Wフィット 高吸収テープ M</label><input type="number" id="p17" min="0" value="0" required></div>
+                <div class="form-group"><label for="p18">白十字 サルバ 安心Wフィット 高吸収テープ M-L</label><input type="number" id="p18" min="0" value="0" required></div>
+                <div class="form-group"><label for="p19">白十字 サルバ 安心Wフィット 高吸収テープ L</label><input type="number" id="p19" min="0" value="0" required></div>
+                <div class="form-group"><label for="p20">白十字 サルバ ドライタオル ソフト</label><input type="number" id="p20" min="0" value="0" required></div>
+                <div class="form-group"><label for="p21">協和紙工 大人用からだふき</label><input type="number" id="p21" min="0" value="0" required></div>
+                <div class="form-group"><label for="p22">タヒラ ハビナース 泡でさっぱりからだふき 本体500ml</label><input type="number" id="p22" min="0" value="0" required></div>
+                <div class="form-group"><label for="p23">タヒラ ハビナース 泡でさっぱりからだふき 詰替400ml</label><input type="number" id="p23" min="0" value="0" required></div>
+                <div class="form-group"><label for="p24">タヒラ ハビナース 清拭料しっとりタイプ 1L</label><input type="number" id="p24" min="0" value="0" required></div>
+            </div>
+
+            <button type="submit" id="submitButton">この内容で発注する</button>
+        </form>
+        <div id="message"></div>
+    </div>
+
+    <script>
+      const form = document.getElementById('orderForm');
+      const submitButton = document.getElementById('submitButton');
+      const messageDiv = document.getElementById('message');
+      // ↓↓↓↓↓↓ ★★ここを書き換えてください！★★ ↓↓↓↓↓↓
+      const gasUrl = '【以前コピーしたウェブアプリのURLをここに貼り付け】'; 
+      // ↑↑↑↑↑↑ ★★ここを書き換えてください！★★ ↑↑↑↑↑↑
+
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        submitButton.disabled = true;
+        submitButton.textContent = '送信中...';
+        messageDiv.textContent = '';
+        messageDiv.className = ''; // メッセージのクラスをリセット
+
+        const formData = { customerName: document.getElementById('customerName').value };
+        // 商品データを収集
+        for(let i=1; i<=24; i++){
+            const pid = 'p' + ('0' + i).slice(-2); // p01, p02...
+            formData[pid] = document.getElementById(pid).value;
+        }
+
+        fetch(gasUrl, {
+          method: 'POST',
+          mode: 'no-cors', 
+          cache: 'no-cache',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData),
+          redirect: 'follow'
+        })
+        .then(response => {
+            // 'no-cors'モードではレスポンスのチェックができないため、常に成功として扱う
+            // GAS側でエラーが起きても、このthenが実行されてしまう点に注意
+            messageDiv.textContent = '発注が完了しました。ありがとうございました。';
+            messageDiv.classList.add('success');
+            form.reset();
+            document.getElementById('customerName').value = "高原ナーシングホーム"; // 施設名をリセット後に再設定
+        })
+        .catch(error => {
+          messageDiv.textContent = 'エラーが発生しました。お手数ですが管理者にご連絡ください。';
+          messageDiv.classList.add('error');
+        })
+        .finally(() => {
+          submitButton.disabled = false;
+          submitButton.textContent = 'この内容で発注する';
+        });
+      });
+    </script>
+</body>
+</html>
