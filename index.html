@@ -174,55 +174,51 @@
         </form>
         <div id="message"></div>
     </div>
+<script>
+  const form = document.getElementById('orderForm');
+  const submitButton = document.getElementById('submitButton');
+  const messageDiv = document.getElementById('message');
+  const gasUrl = 'https://script.google.com/macros/s/AKfycbwZft9zKMhHNzEiwjeA9so4w02hGdz5fWFR0_aaYUG_xHxd7p8YfExqPP0Dn-eoYVs/exec';
 
-    <script>
-      const form = document.getElementById('orderForm');
-      const submitButton = document.getElementById('submitButton');
-      const messageDiv = document.getElementById('message');
-      // ↓↓↓↓↓↓ ★★ここを書き換えてください！★★ ↓↓↓↓↓↓
-      const gasUrl = '【以前コピーしたウェブアプリのURLをここに貼り付け】'; 
-      // ↑↑↑↑↑↑ ★★ここを書き換えてください！★★ ↑↑↑↑↑↑
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
 
-      form.addEventListener('submit', function(e) {
-        e.preventDefault();
+    submitButton.disabled = true;
+    submitButton.textContent = '送信中...';
+    messageDiv.textContent = '';
+    messageDiv.className = '';
 
-        submitButton.disabled = true;
-        submitButton.textContent = '送信中...';
-        messageDiv.textContent = '';
-        messageDiv.className = ''; // メッセージのクラスをリセット
+    const formData = { customerName: document.getElementById('customerName').value };
+    for(let i=1; i<=24; i++){
+        const pid = 'p' + ('0' + i).slice(-2);
+        formData[pid] = document.getElementById(pid).value;
+    }
 
-        const formData = { customerName: document.getElementById('customerName').value };
-        // 商品データを収集
-        for(let i=1; i<=24; i++){
-            const pid = 'p' + ('0' + i).slice(-2); // p01, p02...
-            formData[pid] = document.getElementById(pid).value;
-        }
-
-        fetch(gasUrl, {
-          method: 'POST',
-          mode: 'no-cors', 
-          cache: 'no-cache',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(formData),
-          redirect: 'follow'
-        })
-        .then(response => {
-            // 'no-cors'モードではレスポンスのチェックができないため、常に成功として扱う
-            // GAS側でエラーが起きても、このthenが実行されてしまう点に注意
-            messageDiv.textContent = '発注が完了しました。ありがとうございました。';
-            messageDiv.classList.add('success');
-            form.reset();
-            document.getElementById('customerName').value = "高原ナーシングホーム"; // 施設名をリセット後に再設定
-        })
-        .catch(error => {
-          messageDiv.textContent = 'エラーが発生しました。お手数ですが管理者にご連絡ください。';
-          messageDiv.classList.add('error');
-        })
-        .finally(() => {
-          submitButton.disabled = false;
-          submitButton.textContent = 'この内容で発注する';
-        });
-      });
-    </script>
+    fetch(gasUrl, {
+      method: 'POST',
+      mode: 'no-cors', 
+      cache: 'no-cache',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData),
+      redirect: 'follow'
+    })
+    .then(response => {
+        messageDiv.textContent = '発注が完了しました。ありがとうございました。';
+        messageDiv.classList.add('success');
+        form.reset();
+        document.getElementById('customerName').value = "高原ナーシングホーム";
+    })
+    .catch(error => {
+      messageDiv.textContent = 'エラーが発生しました。お手数ですが管理者にご連絡ください。';
+      messageDiv.classList.add('error');
+    })
+    .finally(() => {
+      submitButton.disabled = false;
+      submitButton.textContent = 'この内容で発注する';
+    });
+  });
+</script>
+   
 </body>
 </html>
+
